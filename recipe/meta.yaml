@@ -1,18 +1,18 @@
 {% set name = "djangocms-history" %}
-{% set version = "2.2.3" %}
+{% set version = "3.0.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/djangocms-history-{{ version }}.tar.gz
-  sha256: 1e6f7e7bc440c89c6a56966d2f423984e194ff5b02cd6bc7692d1d1a129ca964
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name | replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 229d5fabd7633d3a7c779e1928a4f37a862d3b9162ad705edfeb8b9d2eeb2c18
 
 build:
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   host:
@@ -20,8 +20,9 @@ requirements:
     - pip
     - setuptools
   run:
+    - django
     - python >={{ python_min }}
-    - django-cms >=3.7
+    - django-cms >=4.1
 
 test:
   imports:
